@@ -18,8 +18,6 @@ int main()
     window.setFramerateLimit(60);
     window.setKeyRepeatEnabled(false);
 
-    propplatform.create_platform();
-
     while(window.isOpen()){
         while(window.pollEvent(event)){
             if(event.type == sf::Event::Closed){

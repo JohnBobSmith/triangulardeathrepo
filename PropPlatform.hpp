@@ -16,8 +16,6 @@ class PropPlatform : public GameObject
         PropPlatform();
         ~PropPlatform();
 
-        void create_platform();
-
     private:
         sf::Texture platformTexture;
 

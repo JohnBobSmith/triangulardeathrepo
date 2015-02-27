@@ -8,11 +8,12 @@
 Player::Player()
 {
     TDGameEngine tdgameengine;
-    PropPlatform propplatform;
 
     playerTexture = tdgameengine.load_texture_from_disk("textures/player.png");
     playerSprite.setTexture(playerTexture);
     playerSprite.setPosition(250, 0);
+
+    playerBoundingBox = playerSprite.getGlobalBounds();
 
     gravity.x = 0;
     gravity.y = 1.905;
@@ -45,9 +46,10 @@ void Player::move_player()
     PropTriangle proptriangle;
     PropPlatform propplatform;
 
-    playerBoundingBox = playerSprite.getGlobalBounds();
-
     playerSprite.move(playerVector2f);
+
+    //std::cout << propplatform.platformBoundingBox.width << " " << propplatform.platformBoundingBox.height << std::endl;
+    std::cout << playerBoundingBox.width << " " << playerBoundingBox.height << std::endl;
 
     if(collisiondetection.check_collision(playerBoundingBox, propplatform.platformBoundingBox)){
         std::cout << "Collision detected!!!" << std::endl;
