@@ -7,15 +7,14 @@
 Player::Player()
 {
     TDGameEngine tdgameengine;
+    PropPlatform propplatform;
 
     playerTexture = tdgameengine.load_texture_from_disk("textures/player.png");
     playerSprite.setTexture(playerTexture);
-    playerSprite.setPosition(100, 300);
-
-    playerBoundingBox = playerSprite.getGlobalBounds();
+    playerSprite.setPosition(250, 0);
 
     gravity.x = 0;
-    gravity.y = 9.81;
+    gravity.y = 1.905;
 }
 
 void Player::handle_keyboard_input(sf::Event event)
@@ -26,6 +25,10 @@ void Player::handle_keyboard_input(sf::Event event)
 
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
         playerVector2f.x -= playerVelocity * playerMaxVelocity;
+    }
+
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
+        playerVector2f.y += playerVelocity * playerMaxVelocity;
     }
 
     if(event.type == sf::Event::KeyPressed){
@@ -45,5 +48,7 @@ void Player::move_player()
 
     playerSprite.move(playerVector2f);
 
-    playerSprite.move(gravity);
+    if(collisiondetection.check_collision(playerBoundingBox, propplatform.platformBoundingBox)){
+        playerVector2f -= playerVector2f;
+    }
 }

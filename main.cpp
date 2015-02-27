@@ -34,7 +34,9 @@ int main()
 
         window.draw(player.playerSprite);
         window.draw(proptriangle.triangle);
-        window.draw(propplatform.platformStorage[0].object);
+        for(int i = 0; i < propplatform.maxPlatforms; i++){
+            window.draw(propplatform.platformStorage[i]->objectSprite);
+        }
 
         window.display();
     }

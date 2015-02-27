@@ -8,12 +8,17 @@
 class PropPlatform : public GameObject
 {
     public:
+        const int maxPlatforms = 1;
+
+        sf::FloatRect platformBoundingBox;
+        std::vector<gameObjectBase*> platformStorage;
+
         PropPlatform();
+        ~PropPlatform();
+
         void create_platform();
-        std::vector<gameObjectBase> platformStorage;
 
     private:
-        gameObjectBase platform;
         sf::Texture platformTexture;
 
 };

@@ -2,34 +2,34 @@
 
 bool CollisionDetection::check_collision(sf::FloatRect rectA, sf::FloatRect rectB)
 {
-    float rectATop, rectBTop;
-    float rectABottom, rectBBottom;
-    float rectALeft, rectBLeft;
-    float rectARight, rectBRight;
+    float leftA, leftB;
+    float rightA, rightB;
+    float topA, topB;
+    float bottomA, bottomB;
 
-    rectATop = rectA.top;
-    rectABottom = rectA.top + rectA.height;
-    rectALeft = rectA.left;
-    rectARight = rectA.left + rectA.width;
+    leftA = rectA.left;
+    rightA = rectA.left + rectA.width;
+    topA = rectA.top;
+    bottomA = rectA.top + rectA.height;
 
-    rectBTop = rectB.top;
-    rectBBottom = rectB.top + rectB.height;
-    rectBLeft = rectB.left;
-    rectBRight = rectB.left + rectB.width;
+    leftB = rectB.left;
+    rightB = rectB.left + rectB.width;
+    topB = rectB.top;
+    bottomB = rectB.top + rectB.height;
 
-    if(rectABottom <= rectBTop){
+    if(leftA <= rightB){
         return false;
     }
 
-    if(rectATop >= rectBBottom){
+    if(rightA >= leftB){
         return false;
     }
 
-    if(rectARight <= rectBLeft){
+    if(topA >= bottomB){
         return false;
     }
 
-    if(rectALeft >= rectBRight){
+    if(bottomA <= topB){
         return false;
     }
 

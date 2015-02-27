@@ -2,6 +2,7 @@
 #define PLAYER_H
 
 #include <SFML/Graphics.hpp>
+#include <vector>
 
 class Player
 {
@@ -21,7 +22,7 @@ class Player
         float playerVelocity = 0.1;
         float playerMaxVelocity = 0.5;
         float playerJumpHeight = 6.5;
-        bool isGrounded = false;
+        bool isGrounded;
 };
 
 #endif // PLAYER_H

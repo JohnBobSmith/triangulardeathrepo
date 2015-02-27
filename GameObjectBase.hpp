@@ -2,7 +2,6 @@
 #define GAMEOBJECTBASE_H
 
 #include <SFML/Graphics.hpp>
-#include <vector>
 
 class GameObject
 {
@@ -11,8 +10,7 @@ class GameObject
         {
             sf::Texture objectTexture;
             sf::Vector2f objectPosition;
-            sf::FloatRect objectBoundingBox;
-            sf::Sprite object;
+            sf::Sprite objectSprite;
 
         } gameObjectBase;
 };
