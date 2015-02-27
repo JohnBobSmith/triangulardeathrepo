@@ -3,6 +3,7 @@
 #include "CollisionDetection.hpp"
 #include "PropTriangle.hpp"
 #include "PropPlatform.hpp"
+#include <iostream>
 
 Player::Player()
 {
@@ -49,6 +50,7 @@ void Player::move_player()
     playerSprite.move(playerVector2f);
 
     if(collisiondetection.check_collision(playerBoundingBox, propplatform.platformBoundingBox)){
+        std::cout << "Collision detected!!!" << std::endl;
         playerVector2f -= playerVector2f;
     }
 }
