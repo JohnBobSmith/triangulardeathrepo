@@ -17,8 +17,6 @@ PropPlatform::PropPlatform()
         platformStorage[i]->objectSprite.setPosition(platformStorage[i]->objectPosition);
         platformStorage[i]->objectSprite.setTexture(platformStorage[i]->objectTexture);
         platformBoundingBox = platformStorage[0]->objectSprite.getGlobalBounds();
-
-        //std::cout << platformBoundingBox.width << " " << platformBoundingBox.height << std::endl;
     }
 }
 

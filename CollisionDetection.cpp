@@ -17,20 +17,32 @@ bool CollisionDetection::check_collision(sf::FloatRect rectA, sf::FloatRect rect
     topB = rectB.top;
     bottomB = rectB.top + rectB.height;
 
-    if(leftA <= rightB){
+    if(bottomA <= topB){
+        isYAxisColliding = false;
         return false;
-    }
-
-    if(rightA >= leftB){
-        return false;
+    } else {
+        isYAxisColliding = true;
     }
 
     if(topA >= bottomB){
+        isYAxisColliding = false;
         return false;
+    } else {
+        isYAxisColliding = true;
     }
 
-    if(bottomA <= topB){
+    if(rightA <= leftB){
+        isXAxisColliding = false;
         return false;
+    } else {
+        isXAxisColliding = true;
+    }
+
+    if(leftA >= rightB){
+        isXAxisColliding = false;
+        return false;
+    } else {
+        isXAxisColliding = true;
     }
 
     return true;

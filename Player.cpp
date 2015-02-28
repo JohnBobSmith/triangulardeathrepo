@@ -48,11 +48,17 @@ void Player::move_player()
 
     playerSprite.move(playerVector2f);
 
-    //std::cout << propplatform.platformBoundingBox.width << " " << propplatform.platformBoundingBox.height << std::endl;
-    std::cout << playerBoundingBox.width << " " << playerBoundingBox.height << std::endl;
+    playerBoundingBox = playerSprite.getGlobalBounds();
 
     if(collisiondetection.check_collision(playerBoundingBox, propplatform.platformBoundingBox)){
-        std::cout << "Collision detected!!!" << std::endl;
+        if(collisiondetection.isXAxisColliding){
+            std::cout << "The X axis is colliding!" << std::endl;
+        }
+
+        if(collisiondetection.isYAxisColliding){
+            std::cout << "The Y axis is colliding!" << std::endl;
+        }
+
         playerVector2f -= playerVector2f;
     }
 }
