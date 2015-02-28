@@ -14,23 +14,20 @@ Player::Player()
     playerSprite.setPosition(250, 0);
 
     playerBoundingBox = playerSprite.getGlobalBounds();
-
-    gravity.x = 0;
-    gravity.y = 1.905;
 }
 
 void Player::handle_keyboard_input(sf::Event event)
 {
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
-        playerVector2f.x += playerVelocity * playerMaxVelocity;
+        playerVector2f.x += playerVelocity;
     }
 
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
-        playerVector2f.x -= playerVelocity * playerMaxVelocity;
+        playerVector2f.x -= playerVelocity;
     }
 
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
-        playerVector2f.y += playerVelocity * playerMaxVelocity;
+        playerVector2f.y += playerVelocity;
     }
 
     if(event.type == sf::Event::KeyPressed){
@@ -40,25 +37,22 @@ void Player::handle_keyboard_input(sf::Event event)
     }
 }
 
-void Player::move_player()
+void Player::move_player(sf::Time elapsedTime)
 {
     CollisionDetection collisiondetection;
     PropTriangle proptriangle;
     PropPlatform propplatform;
 
-    playerSprite.move(playerVector2f);
+    float accelerationDueToGravity;
+
+    accelerationDueToGravity = gravity / elapsedTime.asSeconds();
+    playerVector2f.y += gravity;
 
     playerBoundingBox = playerSprite.getGlobalBounds();
 
     if(collisiondetection.check_collision(playerBoundingBox, propplatform.platformBoundingBox)){
-        if(collisiondetection.isXAxisColliding){
-            std::cout << "The X axis is colliding!" << std::endl;
-        }
-
-        if(collisiondetection.isYAxisColliding){
-            std::cout << "The Y axis is colliding!" << std::endl;
-        }
-
         playerVector2f -= playerVector2f;
     }
+
+    playerSprite.move(playerVector2f);
 }

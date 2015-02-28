@@ -14,11 +14,13 @@ int main()
 
     sf::RenderWindow window(sf::VideoMode(screenWidth, screenHeight), "Triangular Death");
     sf::Event event;
+    sf::Clock clock;
 
     window.setFramerateLimit(60);
     window.setKeyRepeatEnabled(false);
 
     while(window.isOpen()){
+        sf::Time elapsed = clock.restart();
         while(window.pollEvent(event)){
             if(event.type == sf::Event::Closed){
                 window.close();
@@ -27,11 +29,10 @@ int main()
         }
 
         window.clear(sf::Color::Black);
-
-        player.move_player();
-
+        player.move_player(elapsed);
         window.draw(player.playerSprite);
         window.draw(proptriangle.triangle);
+
         for(int i = 0; i < propplatform.maxPlatforms; i++){
             window.draw(propplatform.platformStorage[i]->objectSprite);
         }
